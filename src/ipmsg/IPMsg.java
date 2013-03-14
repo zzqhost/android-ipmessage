@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -831,7 +832,10 @@ public class IPMsg implements IPMComListener, java.io.Serializable
 		// }
 		try
 		{
-			btmpds = new DatagramSocket(2425);
+			// btmpds = new DatagramSocket(2425);
+			btmpds = new DatagramSocket(null);
+			btmpds.setReuseAddress(true);
+			btmpds.bind(new InetSocketAddress(2454));
 		} catch (SocketException e)
 		{
 			// TODO Auto-generated catch block
